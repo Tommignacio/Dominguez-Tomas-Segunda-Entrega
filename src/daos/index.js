@@ -17,14 +17,16 @@ switch (process.env.DB_NAME) {
                 cartsDao = new MongoDBCarts();
             })
         break;
-    // case 'firebase':
-    //     import('./productos/FirebaseProductos.js').then(({ FirebaseProductos }) => {
-    //         productosDao = new FirebaseProductos();
-    //     })
-    //     import('./carritos/FirebaseCarrito.js').then(({ FirebaseCarrito }) => {
-    //         carritosDao = new FirebaseCarrito();
-    //     })
-    //     break;
+    case 'firebase':
+        import('./products/FirebaseProducts.js')
+            .then(({ FirebaseProducts }) => {
+                productsDao = new FirebaseProducts();
+            })
+        import('./carts/FirebaseCarts.js')
+            .then(({ FirebaseCarts }) => {
+                cartsDao = new FirebaseCarts();
+            })
+        break;
     default:
         throw new Error("It's in default (No DB provided)");
 

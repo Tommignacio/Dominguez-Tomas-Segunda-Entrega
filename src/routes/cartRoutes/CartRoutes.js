@@ -62,16 +62,12 @@ cartsRouter.post('/:id/productos', async (req, res) => {
         //si existen ambos
         if (cart && products) {
             const cartUpdated = await api.addProducts(cart, products);
-
-            const newCart = await api.getOne(cartUpdated._id);
             res.status(201).json({
-                carrito: newCart
+                agregado: cart
             });
         }
 
     } catch (err) {
-        // console.log(err)
-        // console.log(JSON.stringify(err.message, null, 2))
         res.json({ mssg: err.message });
     }
 });
@@ -92,9 +88,9 @@ cartsRouter.delete('/:id/productos/:productoId', async (req, res) => {
 
         if (cart && productoId) {
             const cartUpdated = await api.deleteProduct(cart, productoId);
-            const newCart = await api.getOne(cartUpdated._id);
+
             res.status(200).json({
-                carrito: newCart
+                eliminado: productoId
             });
         }
     } catch (err) {

@@ -28,6 +28,7 @@ productsRouter.post('/', async (req, res) => {
     try {
         const product = req.body;
         const newProduct = await api.create(product);
+        console.log(newProduct)
         res.status(201).json({
             producto: newProduct
         });
@@ -41,9 +42,7 @@ productsRouter.put('/:id', async (req, res) => {
         const { id } = req.params;
         const productNew = req.body;
         const updatedProduct = await api.update(id, productNew);
-        res.json({
-            id: updatedProduct._id
-        });
+        res.json("producto actualizado ");
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
